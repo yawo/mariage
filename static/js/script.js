@@ -1,4 +1,4 @@
-/* Author: YOUR NAME HERE
+/* Author: Yawo Guillaume Kpotufe
 */
 
 $(document).ready(function() {   

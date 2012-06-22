@@ -60,10 +60,10 @@ io.sockets.on('connection', function(socket){
 server.get('/', function(req,res){
   res.render('index.jade', {
     locals : { 
-              title : 'Your Page Title'
-             ,description: 'Your Page Description'
-             ,author: 'Your Name'
-             ,analyticssiteid: 'XXXXXXX' 
+              title : 'Mariage Djark & Lydie'
+             ,description: 'Mariage Djark & Lydie'
+             ,author: 'Guillaumus'
+             ,analyticssiteid: 'UA-32864937-1' 
             }
   });
 });

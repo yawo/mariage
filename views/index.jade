@@ -1,6 +1,147 @@
 extends layout
 
+block header
+    .header.navbar.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#') Djark & Lydie
+          .btn-group.pull-right
+            a.btn.dropdown-toggle(data-toggle='dropdown', href='#')
+              i.icon-user
+              | Username
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') Profile
+              li.divider
+              li
+                a(href='#') Sign Out
+          .nav-collapse
+            ul.nav
+              li.active
+                a(href='#') Accueil
+              li
+                a(href='#about') Programme
+              li
+                a(href='#contact') Contacts
+              li
+                a(href='#contact') Photos
+              li
+                a(href='#contact') Videos 
+          //
+            /.nav-collapse 
+    
 block content
-	div
-		a(id='sender')='Send a Message'
-		ul(id='reciever')
+    .container-fluid
+      .row-fluid
+        .span3
+          .well.sidebar-nav
+            ul.nav.nav-list
+              li.nav-header Equipements
+              li.active
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li.nav-header Flouss
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li.nav-header Autres
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+          //
+            /.well 
+        //
+          /span
+        .span9
+          .hero-unit
+            h1 Djark & Lydie se marient !
+            //div
+                a(id='sender')='Send a Message'
+                ul(id='reciever')
+            p
+              | Description intéressante...
+            p
+              a.btn.btn-primary.btn-large Leur histoire »
+          .row-fluid
+            .span4
+              h2 Top cadeau 2
+              p
+                | Description Cadeau...
+              p
+                a.btn(href='#') Je donne ! »
+            //
+              /span
+            .span4
+              h2 Top cadeau 2
+              p
+                | Description Cadeau...
+              p
+                a.btn(href='#') Je donne ! »
+            //
+              /span
+            .span4
+              h2 Top cadeau 3
+              p
+                | Description Cadeau...
+              p
+                a.btn(href='#') Je donne ! »
+            //
+              /span
+          //
+            /row
+          .row-fluid
+            .span4
+              h2 Top cadeau 4
+              p
+                | Description Cadeau...
+              p
+                a.btn(href='#') Je donne ! »
+            //
+              /span
+            .span4
+              h2 Top cadeau 5
+              p
+                | Description Cadeau...
+              p
+                a.btn(href='#') Je donne ! »
+            //
+              /span
+            .span4
+              h2 Top cadeau 6
+              p
+                | Description Cadeau...
+              p
+                a.btn(href='#') Je donne ! »
+            //
+              /span
+          //
+            /row
+        //
+          /span
+      //
+        /row
+      hr
