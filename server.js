@@ -4,7 +4,8 @@ var connect = require('connect')
     , express = require('express')
     , io = require('socket.io')
     ,redis = require('socket.io/node_modules/redis')
-    , port = (process.env.PORT || 8081);
+    , port = (process.env.PORT || 8081)
+    ,nohm = require('nohm').Nohm;
 
 //Setup Express
 var server = express.createServer();
@@ -23,7 +24,83 @@ server.configure(function(){
 //pass=9ffd430d2e0d3a45b44ae987d2bb7ede
 var redisClient = redis.createClient('9337','koi.redistogo.com');
 redisClient.auth('9ffd430d2e0d3a45b44ae987d2bb7ede',redis.print);
-
+nohm.setClient(redis);
+nohm.model('Gift', {
+    properties: {
+      name: {
+        type: 'string',
+        unique: true,
+        validations: [
+          'notEmpty'
+        ]
+      },
+      description: {
+        type: 'string',
+        unique: true,
+        validations: [
+          'notEmpty'
+        ]
+      },
+      contact: {
+        type: 'string',
+        defaultValue: 'Djark, 06 00 00 00 00, x@x.com',
+        validations: [
+          'notEmpty'
+        ]
+      },
+      thumbnail: {
+        type: 'string',
+        defaultValue: '/img/gift-thumnail.jpg',
+        validations: [
+          'notEmpty'
+        ]
+      },      
+      online:{
+        type: 'boolean',
+        defaultValue: true,
+        index: true
+      },
+      givers:{
+        type: 'json',
+        defaultValue: {list:[]}        
+      }
+      
+    },
+    methods: {
+        // gv is {gname,gcontact,gmessage,gdate}
+      give: function (gv) {  
+          if(gv)
+            this.p('givers').list.push=gv;        
+          return gv
+      }
+    },
+    idGenerator: 'increment'    
+  });
+  
+  var gift = nohm.factory('Gift');
+  gift.p({
+    name: 'Mark',
+    description: 'mark@example.com',
+    country: 'Mexico',
+    visits: 1
+  });
+  gift.save(function (err) {
+    if (err === 'invalid') {
+      console.log('properties were invalid: ', gift.errors);
+    } else if (err) {
+      console.log(err); // database or unknown error
+    } else {
+      console.log('saved gift! :-)');
+     /* gift.remove(function (err) {
+        if (err) {
+          console.log(err); // database or unknown error
+        } else {
+          console.log('successfully removed gift');
+        }
+      });*/
+    }
+  });
+  
 //setup the errors
 server.error(function(err, req, res, next){
     if (err instanceof NotFound) {
