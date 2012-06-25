@@ -45,3 +45,8 @@ html.no-js(lang='en')
           script(defer, src='//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js')
           script(defer)
             window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})
+          script
+            $(function(){
+                console.log("loaded");
+                $('.carousel').carousel({  interval: 2000});
+            });

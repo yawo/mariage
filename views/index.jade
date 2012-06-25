@@ -8,7 +8,8 @@ block header
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand(href='#') Djark & Lydie
+          a.brand(href='#') 
+            img(src='/img/djarkLydie.PNG', height='21px')
           .btn-group.pull-right
             a.btn.dropdown-toggle(data-toggle='dropdown', href='#')
               i.icon-user
@@ -37,11 +38,11 @@ block header
     
 block content
     .container-fluid
-      .row-fluid
+      
         .span3
           .well.sidebar-nav
             ul.nav.nav-list
-              li.nav-header Equipements
+              li.nav-header Offrir un Equipement
               li.active
                 a(href='#') Link
               li
@@ -52,40 +53,44 @@ block content
                 a(href='#') Link
               li
                 a(href='#') Link
-              li.nav-header Flouss
+              li.nav-header Offrir de l'argent
               li
-                a(href='#') Link
+                a(href='#') Western Union / Wafa Cash
               li
-                a(href='#') Link
+                a(href='#') Chèque / Virement
               li
-                a(href='#') Link
+                a(href='#') Espèces             
+              li.nav-header Autres cadeaux
               li
-                a(href='#') Link
+                a(href='#') Services
               li
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li.nav-header Autres
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
+                a(href='#') Autre             
           //
             /.well 
         //
           /span
-        .span9
-          .hero-unit
-            h1 Djark & Lydie se marient !
-            //div
-                a(id='sender')='Send a Message'
-                ul(id='reciever')
-            p
-              | Description intéressante...
-            p
-              a.btn.btn-primary.btn-large Leur histoire »
+        .span11
+          #myCarousel.carousel.slide
+              // Carousel items 
+              .carousel-inner
+                items = [['01.jpg','caption1','text1'],['02.jpg','caption2','text2'],['03.jpg','caption3','text3'],['02.jpg','caption4','text4']]
+                //First image
+                .active.item 
+                        img(src='/images/#{items[0][0]}')
+                        .carousel-caption
+                           h4 #{items[0][1]}
+                           p #{items[0][2]}
+                each item,i in items
+                    .item 
+                        img(src='/images/#{item[0]}', alt='image#{i}')
+                        .carousel-caption
+                           h4 #{item[1]}
+                           p #{item[2]}
+              //
+                Carousel nav 
+              a.carousel-control.left(href='#myCarousel', data-slide='prev') ‹
+              a.carousel-control.right(href='#myCarousel', data-slide='next') ›
+
           .row-fluid
             .span4
               h2 Top cadeau 2
