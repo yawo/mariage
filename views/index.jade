@@ -73,7 +73,7 @@ block content
           #myCarousel.carousel.slide
               // Carousel items 
               .carousel-inner
-                items = [['01.jpg','caption1','text1'],['02.jpg','caption2','text2'],['03.jpg','caption3','text3'],['02.jpg','caption4','text4']]
+                items = [['100_3729.png','100_3729','Mariage Djakr et Lydie'],['100_3731.png','100_3731','Mariage Djakr et Lydie'],['100_3746.png','Mariage Djakr et Lydie','text3']]
                 //First image
                 .active.item 
                         img(src='/images/#{items[0][0]}')
@@ -97,7 +97,7 @@ block content
               p
                 | Description Cadeau...
               p
-                a.btn(href='#') Le Programme ! »
+                a.btn(data-toggle="modal", href="#myModalProgram") Le Programme ! »
             //
               /span
             .span4
@@ -107,7 +107,7 @@ block content
                 | Le stress des derniers moments fait que nous avons surement oublié des personnes chères.                
                 | Merci de nous excusez si vous êtes du cas et télécharger puis imprimer le faire-part de la cérémonie.
               p
-                a.btn(href='#') Télécharger »
+                a.btn(data-toggle="modal", href="#myModalFairePart") Télécharger »
             //
               /span
             .span4
@@ -117,40 +117,61 @@ block content
                 | Découvrez les moments forts en images.
                 | La dot, les temps de stress, les cérémonies...
               p
-                a.btn(href='#') L'Album »
-            //
-              /span
-          //
-            /row
-          .row-fluid
-            .span4
-              h2 Top cadeau 4
-              p
-                | Description Cadeau...
-              p
-                a.btn(href='#') Je donne ! »
-            //
-              /span
-            .span4
-              h2 Top cadeau 5
-              p
-                | Description Cadeau...
-              p
-                a.btn(href='#') Je donne ! »
-            //
-              /span
-            .span4
-              h2 Top cadeau 6
-              p
-                | Description Cadeau...
-              p
-                a.btn(href='#') Je donne ! »
-            //
-              /span
-          //
-            /row
-        //
-          /span
-      //
-        /row
+                a.btn(data-toggle="modal", href="#myModalAlbum") L'Album »
       hr
+//Modals
+    #myModalGift.modal.hide.fade
+      .modal-header
+        button.close(type='button', data-dismiss='modal') ×
+        h3 Modal header
+      .modal-body
+        p One fine body…
+      .modal-footer
+        a.btn(href='#', data-dismiss='modal') Close
+        a.btn.btn-primary(href='#') Save changes
+
+
+    #myModalMoney.modal.hide.fade
+      .modal-header
+        button.close(type='button', data-dismiss='modal') ×
+        h3 Modal header
+      .modal-body
+        p One fine body…
+      .modal-footer
+        a.btn(href='#', data-dismiss='modal') Close
+        a.btn.btn-primary(href='#') Save changes
+
+
+    #myModalProgram.modal.hide.fade
+      .modal-header
+        button.close(type='button', data-dismiss='modal') ×
+        h3 Modal header
+      .modal-body
+        p Programme
+      .modal-footer
+        a.btn(href='#', data-dismiss='modal') Close
+        a.btn.btn-primary(href='#') Save changes
+
+
+    #myModalFairePart.modal.hide.fade
+      .modal-header
+        button.close(type='button', data-dismiss='modal') ×
+        h3 Modal header
+      .modal-body
+        p Faire part
+      .modal-footer
+        a.btn(href='#', data-dismiss='modal') Close
+        a.btn.btn-primary(href='#') Save changes
+
+
+    #myModalAlbum.modal.hide.fade
+      .modal-header
+        button.close(type='button', data-dismiss='modal') ×
+        h3 Modal header
+      .modal-body
+        p Album
+      .modal-footer
+        a.btn(href='#', data-dismiss='modal') Close
+        a.btn.btn-primary(href='#') Save changes
+    
+    

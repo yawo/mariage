@@ -3,7 +3,7 @@
 var connect = require('connect')
     , express = require('express')
     , io = require('socket.io')
-    ,redis = require('socket.io/node_modules/redis')
+    ,redis = require('nohm/node_modules/redis')
     , port = (process.env.PORT || 8081)
     ,nohm = require('nohm').Nohm;
 
@@ -24,7 +24,7 @@ server.configure(function(){
 //pass=9ffd430d2e0d3a45b44ae987d2bb7ede
 var redisClient = redis.createClient('9337','koi.redistogo.com');
 redisClient.auth('9ffd430d2e0d3a45b44ae987d2bb7ede',redis.print);
-nohm.setClient(redis);
+nohm.setClient(redisClient);
 nohm.model('Gift', {
     properties: {
       name: {
