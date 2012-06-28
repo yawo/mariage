@@ -43,16 +43,21 @@ block content
           .well.sidebar-nav
             ul.nav.nav-list
               li.nav-header Offrir un Equipement
-              li.active
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
+              each gift,i in gifts
+                claz = 'tyu'
+                idz  = 'myModalGift'+gift.name
+                if i == 0
+                    claz = 'active'
+                li(class=claz)
+                    a(data-toggle="modal", href=idz) #{gift.name}
+                .modal.hide.fade(id=idz)
+                  .modal-header
+                    button.close(type='button', data-dismiss='modal') ×
+                    h3 Modal header
+                  .modal-body
+                    p Cadeau #{gift.name}
+                  .modal-footer
+                    a.btn(href='#', data-dismiss='modal') Close
               li.nav-header Offrir de l'argent
               li
                 a(href='#') Western Union / Wafa Cash
@@ -74,14 +79,15 @@ block content
               // Carousel items 
               .carousel-inner
                 items = [['100_3729.png','100_3729','Mariage Djakr et Lydie'],['100_3731.png','100_3731','Mariage Djakr et Lydie'],['100_3746.png','Mariage Djakr et Lydie','text3']]
-                //First image
-                .active.item 
-                        img(src='/images/#{items[0][0]}')
-                        .carousel-caption
-                           h4 #{items[0][1]}
-                           p #{items[0][2]}
                 each item,i in items
-                    .item 
+                    if i==0
+                      .item.active
+                        img(src='/images/#{item[0]}', alt='image#{i}')
+                        .carousel-caption
+                           h4 #{item[1]}
+                           p #{item[2]}
+                    else
+                      .item
                         img(src='/images/#{item[0]}', alt='image#{i}')
                         .carousel-caption
                            h4 #{item[1]}
@@ -93,7 +99,7 @@ block content
 
           .row-fluid
             .span4
-              h2 Programme
+              h2 Programme 
               p
                 | Description Cadeau...
               p
@@ -119,7 +125,6 @@ block content
                 a.btn(data-toggle="modal", href="#myModalAlbum") L'Album »
       
       .modals
-            |Check
             #myModalGift.modal.hide.fade
               .modal-header
                 button.close(type='button', data-dismiss='modal') ×
@@ -128,7 +133,7 @@ block content
                 p One fine body…
               .modal-footer
                 a.btn(href='#', data-dismiss='modal') Close
-                a.btn.btn-primary(href='#') Save changes
+                 
         
         
             #myModalMoney.modal.hide.fade
@@ -139,7 +144,7 @@ block content
                 p One fine body…
               .modal-footer
                 a.btn(href='#', data-dismiss='modal') Close
-                a.btn.btn-primary(href='#') Save changes
+                 
         
         
             #myModalProgram.modal.hide
@@ -150,7 +155,7 @@ block content
                 p Programme
               .modal-footer
                 a.btn(href='#', data-dismiss='modal') Close
-                a.btn.btn-primary(href='#') Save changes
+                 
         
         
             #myModalFairePart.modal.hide.fade
@@ -161,7 +166,7 @@ block content
                 p Faire part
               .modal-footer
                 a.btn(href='#', data-dismiss='modal') Close
-                a.btn.btn-primary(href='#') Save changes
+                 
         
         
             #myModalAlbum.modal.hide.fade
@@ -172,6 +177,6 @@ block content
                 p Album
               .modal-footer
                 a.btn(href='#', data-dismiss='modal') Close
-                a.btn.btn-primary(href='#') Save changes
+                 
         
         

@@ -24,8 +24,27 @@ server.configure(function(){
 //pass=9ffd430d2e0d3a45b44ae987d2bb7ede
 var redisClient = redis.createClient('9337','koi.redistogo.com');
 redisClient.auth('9ffd430d2e0d3a45b44ae987d2bb7ede',redis.print);
+redisClient.on('connect',function(){
+    var gift = new GiftModel();
+  gift.p({
+    name: 'Moulinex3'+Math.random(),
+    description: 'mark@example.com',
+    
+  });
+  gift.save(function (err) {
+    if (err === 'invalid') {
+      console.log('properties were invalid: ', gift.errors);
+    } else if (err) {
+      console.log(err); // database or unknown error
+    } else {
+      console.log('saved gift! :-)',gift);
+      
+    }  
+  });
+  
+});
 nohm.setClient(redisClient);
-nohm.model('Gift', {
+var GiftModel = nohm.model('Gift', {
     properties: {
       name: {
         type: 'string',
@@ -35,8 +54,7 @@ nohm.model('Gift', {
         ]
       },
       description: {
-        type: 'string',
-        unique: true,
+        type: 'string',        
         validations: [
           'notEmpty'
         ]
@@ -75,30 +93,6 @@ nohm.model('Gift', {
       }
     },
     idGenerator: 'increment'    
-  });
-  
-  var gift = nohm.factory('Gift');
-  gift.p({
-    name: 'Mark',
-    description: 'mark@example.com',
-    country: 'Mexico',
-    visits: 1
-  });
-  gift.save(function (err) {
-    if (err === 'invalid') {
-      console.log('properties were invalid: ', gift.errors);
-    } else if (err) {
-      console.log(err); // database or unknown error
-    } else {
-      console.log('saved gift! :-)');
-     /* gift.remove(function (err) {
-        if (err) {
-          console.log(err); // database or unknown error
-        } else {
-          console.log('successfully removed gift');
-        }
-      });*/
-    }
   });
   
 //setup the errors
@@ -143,13 +137,54 @@ io.sockets.on('connection', function(socket){
 /////// ADD ALL YOUR ROUTES HERE  /////////
 
 server.get('/', function(req,res){
-  res.render('index.jade', {
-    locals : { 
+  GiftModel.find(function(err,ids){
+      if(err){
+         console.log("Error getting gifts",err);     
+         res.render('index.jade', {
+            locals : { 
               title : 'Mariage Djark & Lydie'
              ,description: 'Mariage Djark & Lydie'
              ,author: 'Yawo Guillaume Kpotufe'
-             ,analyticssiteid: 'UA-32864937-1' 
+             ,analyticssiteid: 'UA-32864937-1'             
+            },gifts:[]
+         });
+      }else{
+        var gifts = [];
+        var len = ids.length;
+        var count = 0;
+        if (len === 0) {
+          res.render('index.jade', {
+            locals : { 
+              title : 'Mariage Djark & Lydie'
+             ,description: 'Mariage Djark & Lydie'
+             ,author: 'Yawo Guillaume Kpotufe'
+             ,analyticssiteid: 'UA-32864937-1'             
+            },gifts:[]
+         });
+        }
+        ids.forEach(function (id) {
+          var gift = new GiftModel();
+          gift.load(id, function (err, props) {
+            if (err) {
+              return next(err);
             }
+            //gift.remove();
+            gifts.push(props);
+            if (++count === len) {
+              res.render('index.jade', {
+                locals : { 
+                  title : 'Mariage Djark & Lydie'
+                 ,description: 'Mariage Djark & Lydie'
+                 ,author: 'Yawo Guillaume Kpotufe'
+                 ,analyticssiteid: 'UA-32864937-1'             
+                },gifts:gifts
+              });
+            }
+          });
+        });
+            
+          }
+      
   });
 });
 
