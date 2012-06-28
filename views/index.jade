@@ -45,11 +45,11 @@ block content
               li.nav-header Offrir un Equipement
               each gift,i in gifts
                 claz = 'tyu'
-                idz  = 'myModalGift'+gift.name
+                idz  = 'myModalGift'+i
                 if i == 0
                     claz = 'active'
                 li(class=claz)
-                    a(data-toggle="modal", href=idz) #{gift.name}
+                    a(data-toggle="modal", href='#'+idz) #{gift.name}
                 .modal.hide.fade(id=idz)
                   .modal-header
                     button.close(type='button', data-dismiss='modal') ×
@@ -78,7 +78,7 @@ block content
           #myCarousel.carousel.slide
               // Carousel items 
               .carousel-inner
-                items = [['100_3729.png','100_3729','Mariage Djakr et Lydie'],['100_3731.png','100_3731','Mariage Djakr et Lydie'],['100_3746.png','Mariage Djakr et Lydie','text3']]
+                items = [['100_3729.png','100_3729','Mariage Djark et Lydie'],['100_3731.png','100_3731','Mariage Djark et Lydie'],['100_3746.png','Mariage Djark et Lydie','text3']]
                 each item,i in items
                     if i==0
                       .item.active
