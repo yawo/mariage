@@ -97,15 +97,14 @@ block content
               p
                 | Description Cadeau...
               p
-                a.btn(data-toggle="modal", href="#myModalProgram") Le Programme ! »
+                a.btn(data-toggle="modal",data-target="#myModalProgram", href="#myModalProgram") Le Programme ! »
             //
               /span
             .span4
               h2 Faire-part
               p
-                | Vous n'avez pas encore d'invitations ?
-                | Le stress des derniers moments fait que nous avons surement oublié des personnes chères.                
-                | Merci de nous excusez si vous êtes du cas et télécharger puis imprimer le faire-part de la cérémonie.
+                | Vous n'avez pas encore d'invitations ?                
+                | Merci de télécharger puis imprimer le faire-part de la cérémonie.
               p
                 a.btn(data-toggle="modal", href="#myModalFairePart") Télécharger »
             //
@@ -118,60 +117,61 @@ block content
                 | La dot, les temps de stress, les cérémonies...
               p
                 a.btn(data-toggle="modal", href="#myModalAlbum") L'Album »
-      hr
-//Modals
-    #myModalGift.modal.hide.fade
-      .modal-header
-        button.close(type='button', data-dismiss='modal') ×
-        h3 Modal header
-      .modal-body
-        p One fine body…
-      .modal-footer
-        a.btn(href='#', data-dismiss='modal') Close
-        a.btn.btn-primary(href='#') Save changes
-
-
-    #myModalMoney.modal.hide.fade
-      .modal-header
-        button.close(type='button', data-dismiss='modal') ×
-        h3 Modal header
-      .modal-body
-        p One fine body…
-      .modal-footer
-        a.btn(href='#', data-dismiss='modal') Close
-        a.btn.btn-primary(href='#') Save changes
-
-
-    #myModalProgram.modal.hide.fade
-      .modal-header
-        button.close(type='button', data-dismiss='modal') ×
-        h3 Modal header
-      .modal-body
-        p Programme
-      .modal-footer
-        a.btn(href='#', data-dismiss='modal') Close
-        a.btn.btn-primary(href='#') Save changes
-
-
-    #myModalFairePart.modal.hide.fade
-      .modal-header
-        button.close(type='button', data-dismiss='modal') ×
-        h3 Modal header
-      .modal-body
-        p Faire part
-      .modal-footer
-        a.btn(href='#', data-dismiss='modal') Close
-        a.btn.btn-primary(href='#') Save changes
-
-
-    #myModalAlbum.modal.hide.fade
-      .modal-header
-        button.close(type='button', data-dismiss='modal') ×
-        h3 Modal header
-      .modal-body
-        p Album
-      .modal-footer
-        a.btn(href='#', data-dismiss='modal') Close
-        a.btn.btn-primary(href='#') Save changes
-    
-    
+      
+      .modals
+            |Check
+            #myModalGift.modal.hide.fade
+              .modal-header
+                button.close(type='button', data-dismiss='modal') ×
+                h3 Modal header
+              .modal-body
+                p One fine body…
+              .modal-footer
+                a.btn(href='#', data-dismiss='modal') Close
+                a.btn.btn-primary(href='#') Save changes
+        
+        
+            #myModalMoney.modal.hide.fade
+              .modal-header
+                button.close(type='button', data-dismiss='modal') ×
+                h3 Modal header
+              .modal-body
+                p One fine body…
+              .modal-footer
+                a.btn(href='#', data-dismiss='modal') Close
+                a.btn.btn-primary(href='#') Save changes
+        
+        
+            #myModalProgram.modal.hide
+              .modal-header
+                button.close(type='button', data-dismiss='modal') ×
+                h3 Modal header
+              .modal-body
+                p Programme
+              .modal-footer
+                a.btn(href='#', data-dismiss='modal') Close
+                a.btn.btn-primary(href='#') Save changes
+        
+        
+            #myModalFairePart.modal.hide.fade
+              .modal-header
+                button.close(type='button', data-dismiss='modal') ×
+                h3 Modal header
+              .modal-body
+                p Faire part
+              .modal-footer
+                a.btn(href='#', data-dismiss='modal') Close
+                a.btn.btn-primary(href='#') Save changes
+        
+        
+            #myModalAlbum.modal.hide.fade
+              .modal-header
+                button.close(type='button', data-dismiss='modal') ×
+                h3 Modal header
+              .modal-body
+                p Album
+              .modal-footer
+                a.btn(href='#', data-dismiss='modal') Close
+                a.btn.btn-primary(href='#') Save changes
+        
+        
