@@ -3,7 +3,7 @@
 var connect = require('connect')
     , express = require('express')
     , io = require('socket.io')
-    ,redis = require('nohm/node_modules/redis')
+    ,redis = require('redis')
     , port = (process.env.PORT || 8081)
     ,nohm = require('nohm').Nohm;
 
