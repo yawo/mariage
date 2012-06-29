@@ -186,7 +186,7 @@ function serveGift(req,res,vw){
           }
       
   });
-}
+}git@heroku.com:djark.git
 
 server.get('/djarkrajd', function(req,res){
   return serveGift(req,res,'admin.jade');
