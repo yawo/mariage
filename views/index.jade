@@ -55,10 +55,13 @@ block content
                   .modal-header
                     button.close(type='button', data-dismiss='modal') ×
                     h3 #{gift.name}
-                  .modal-body
-                    p Cadeau #{gift.name}
-                    p 
-                      img(src='https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcQ1tbiilWWAWtcSyB832jIXbQ7pll8DGsdvpUtO-memJax-1mNc',alt='image cadeau',width=200,height=200)                    
+                  .modal-body                    
+                    table
+                        tr
+                            td
+                                img(src='https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcQ1tbiilWWAWtcSyB832jIXbQ7pll8DGsdvpUtO-memJax-1mNc',alt='image cadeau',width=120,height=120)                    
+                            td.gift-message
+                                p Cadeau #{gift.name}
                     form.well(id=formIdz)
                        label(for='contact') Contact
                        input(name='contact',placeholder='Votre nom complet',type='text')
