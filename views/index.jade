@@ -56,10 +56,20 @@ block content
                     button.close(type='button', data-dismiss='modal') ×
                     h3 #{gift.name}
                   .modal-body
-                    p Cadeau #{gift.description}
-                    form.well.form-inline(id=formIdz,
+                    p Cadeau #{gift.name}
+                    p 
+                      img(src='https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcQ1tbiilWWAWtcSyB832jIXbQ7pll8DGsdvpUtO-memJax-1mNc',alt='image cadeau',width=200,height=200)                    
+                    form.well(id=formIdz)
+                       label(for='contact') Contact
+                       input(name='contact',placeholder='Votre nom complet',type='text')
+                       br
+                       label(for='tel') Téléphone (ou Email)
+                       input(name='tel',placeholder='Votre Tel/Email',type='text')
+                       br
+                       label(for='message') Message
+                       textarea(name='message',placeholder='Un petit message',cols='40',rows='5')
                   .modal-footer
-                    a.btn(href='#', data-dismiss='modal') Close
+                    a.btn(href='#', data-dismiss='modal') Donner
               li.nav-header Offrir de l'argent
               li
                 a(href='#') Western Union / Wafa Cash
