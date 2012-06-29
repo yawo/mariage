@@ -43,10 +43,10 @@ block content
           .well.sidebar-nav
             ul.nav.nav-list
               li.nav-header Offrir un Equipement
+                 a.btn(data-toggle="modal",data-target="#newGift", href="#myModalGift") +
               each gift,i in gifts
                 claz = 'tyu'
                 idz  = 'myModalGift'+i
-                formIdz = 'form_'+formIdz
                 if i == 0
                     claz = 'active'
                 li(class=claz)
@@ -54,12 +54,13 @@ block content
                 .modal.hide.fade(id=idz)
                   .modal-header
                     button.close(type='button', data-dismiss='modal') ×
-                    h3 #{gift.name}
+                    h3 Modal header
                   .modal-body
-                    p Cadeau #{gift.description}
-                    form.well.form-inline(id=formIdz,
+                    p Cadeau #{gift.name}
                   .modal-footer
                     a.btn(href='#', data-dismiss='modal') Close
+                    a.btn(href='/delete/'+gift.id, data-dismiss='modal') Delete
+                    a.btn(href='#', data-dismiss='modal',onclick='update('+gift.id+','+')') Update
               li.nav-header Offrir de l'argent
               li
                 a(href='#') Western Union / Wafa Cash

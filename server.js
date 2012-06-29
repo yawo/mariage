@@ -136,11 +136,11 @@ io.sockets.on('connection', function(socket){
 
 /////// ADD ALL YOUR ROUTES HERE  /////////
 
-server.get('/', function(req,res){
-  GiftModel.find(function(err,ids){
+function serveGift(req,res,vw){
+    GiftModel.find(function(err,ids){
       if(err){
          console.log("Error getting gifts",err);     
-         res.render('index.jade', {
+         return res.render(vw, {
             locals : { 
               title : 'Mariage Djark & Lydie'
              ,description: 'Mariage Djark & Lydie'
@@ -153,7 +153,7 @@ server.get('/', function(req,res){
         var len = ids.length;
         var count = 0;
         if (len === 0) {
-          res.render('index.jade', {
+          return res.render(vw, {
             locals : { 
               title : 'Mariage Djark & Lydie'
              ,description: 'Mariage Djark & Lydie'
@@ -171,7 +171,7 @@ server.get('/', function(req,res){
             //gift.remove();
             gifts.push(props);
             if (++count === len) {
-              res.render('index.jade', {
+             return res.render(vw, {
                 locals : { 
                   title : 'Mariage Djark & Lydie'
                  ,description: 'Mariage Djark & Lydie'
@@ -186,6 +186,15 @@ server.get('/', function(req,res){
           }
       
   });
+}
+
+server.get('/djarkrajd', function(req,res){
+  return serveGift(req,res,'admin.jade');
+});
+
+
+server.get('/', function(req,res){
+  return serveGift(req,res,'index.jade');
 });
 
 
