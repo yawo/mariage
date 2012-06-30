@@ -85,7 +85,7 @@ var GiftModel = nohm.model('Gift', {
       
     },
     methods: {
-        // gv is {gname,gcontact,gmessage,gdate}
+        // gv is [contact,telMail,message,dateCreation,dateLivraison];
       give: function (gv) {  
           if(gv)
             this.p('givers').list.push=gv;        
@@ -234,13 +234,14 @@ server.post('/updateGift',function(req,res){
 
 
 server.post('/addGiftGiver',function(req,res){
-    var id,contact,telMail,message,dateCreation = new Date(),dateLivraison;
+    var id=req.body.id,contact=req.body.contact,telMail=req.body.tel,message=req.body.message,dateCreation = new Date();
     var gift=new GiftModel();
     gift.load(id, function (erro,props) {
         if(erro){
             console.log("addGiftGiver Error",id,erro);
             res.send('FAILURE');
         }else{
+            gift.give([contact,telMail,message,dateCreation]);
             gift.save(function (err) {
                 if (err === 'invalid') {
                   console.log('addGiftGiver:properties were invalid: ', gift.errors);
@@ -249,7 +250,7 @@ server.post('/addGiftGiver',function(req,res){
                   console.log('addGiftGiver:Database err',err); // database or unknown error
                   res.send('FAILURE');
                 } else {
-                  console.log('addGiftGiver:saved gift! :-)',name);
+                  console.log('addGiftGiver:saved gift! :-)');                  
                   res.send('SUCCESS');
                 }
             });

@@ -32,7 +32,7 @@ html.no-js(lang='en')
         script(defer, src='/js/jquery.ui.js')
         script(defer, src='/js/jquery.colorbox.js')
         script(defer, src='/js/bootstrap.min.js')
-        
+        script(defer, src='http://malsup.github.com/jquery.form.js')
         //-script(defer, src='js/plugins.js')
         script(defer, src='/js/script.js')
         script(defer, src='/socket.io/socket.io.js')
@@ -47,6 +47,9 @@ html.no-js(lang='en')
             window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})
           script
             $(function(){
-                console.log("loaded");
+                //console.log("loaded");
                 $('.carousel').carousel({  interval: 2000});
+                $('.ajaxForm').ajaxForm(function(res,sth) { 
+                    console.log("Form sent",res,sth);
+                });
             });

@@ -54,13 +54,29 @@ block content
                 .modal.hide.fade(id=idz)
                   .modal-header
                     button.close(type='button', data-dismiss='modal') ×
-                    h3 Modal header
+                    h3 #{gift.name}
                   .modal-body
-                    p Cadeau #{gift.name}
+                    p
+                        //Givers
+                    form.ajaxForm.well(id=formIdz,method='POST',action='/addGiftGiver')
+                       label(for='name') Nom
+                       input(name='name',placeholder='Nom du cadeau',value=gift.name,type='text')
+                       br
+                       label(for='contact') Tel ou Email du contact
+                       input(name='contact',placeholder='Email ou Tel',value=gift.contact,type='text')
+                       label(for='thumbail') Url de l'image.
+                       input(name='thumbail',value=gift.thumbnail,type='text')
+                       input(name='id',value=gift.id,type='hidden')
+                       br
+                       label(for='description') Description
+                       textarea(name='description',value=gift.description,placeholder='Description du cadeau',cols='40',rows='5')
+                       button.btn.btn-success(type='submit', data-dismiss='modal') Mettre à jour
+                    hr
+                    form.ajaxForm.well(id='delete'+formIdz,method='POST',action='/deleteGift')
+                        input(name='id',value=gift.id,type='hidden')
+                        button.btn.btn-warning(type='submit', data-dismiss='modal') Supprimer            
                   .modal-footer
-                    a.btn(href='#', data-dismiss='modal') Close
-                    a.btn(href='/delete/'+gift.id, data-dismiss='modal') Delete
-                    a.btn(href='#', data-dismiss='modal',onclick='update('+gift.id+','+')') Update
+                    
               li.nav-header Offrir de l'argent
               li
                 a(href='#') Western Union / Wafa Cash
@@ -76,6 +92,27 @@ block content
           //
             /.well 
         //
+        .modal.hide.fade(id='newGift')
+                  .modal-header
+                    button.close(type='button', data-dismiss='modal') ×
+                    h3 Nouveau Cadeau
+                  .modal-body
+                    p
+                        //Givers
+                    form.ajaxForm.well(id='newGiftForm',method='POST',action='/updateGift')
+                       label(for='name') Nom
+                       input(name='name',placeholder='Nom du cadeau',type='text')
+                       br
+                       label(for='contact') Tel ou Email du contact
+                       input(name='contact',placeholder='Email ou Tel',type='text')
+                       label(for='thumbail') Url de l'image.
+                       input(name='thumbail',value=gift.thumbnail,type='text')
+                       input(name='id',value=7777,type='hidden')
+                       br
+                       label(for='description') Description
+                       textarea(name='description',placeholder='Description du cadeau',cols='40',rows='5')
+                       button.btn.btn-success(type='submit', data-dismiss='modal') Créer                    
+                  .modal-footer
           /span
         .span11
           #myCarousel.carousel.slide
