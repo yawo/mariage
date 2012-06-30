@@ -25,7 +25,7 @@ server.configure(function(){
 var redisClient = redis.createClient('9337','koi.redistogo.com');
 redisClient.auth('9ffd430d2e0d3a45b44ae987d2bb7ede',redis.print);
 redisClient.on('connect',function(){
-    var gift = new GiftModel();
+ /* var gift = new GiftModel();
   gift.p({
     name: 'Moulinex3'+Math.random(),
     description: 'mark@example.com',
@@ -40,7 +40,7 @@ redisClient.on('connect',function(){
       console.log('saved gift! :-)',gift);
       
     }  
-  });
+  });*/
   
 });
 nohm.setClient(redisClient);
@@ -197,6 +197,81 @@ server.get('/', function(req,res){
   return serveGift(req,res,'index.jade');
 });
 
+function updateGift(gift,thumbnail,name,description,contact,online){
+    gift.p('thumbnail',thumbnail);
+    gift.p('name',name);
+    gift.p('description',description);
+    gift.p('contact',contact);
+    gift.p('online',online);
+    gift.save(function (err) {
+        if (err === 'invalid') {
+          console.log('properties were invalid: ', gift.errors);
+        } else if (err) {
+          console.log(err); // database or unknown error
+        } else {
+          console.log('saved gift! :-)',name);
+          
+        }  
+    });
+}
+
+server.post('/updateGift',function(req,res){
+    var id,thumbnail,name,description,contact,online;
+    var gift=new GiftModel();
+    gift.load(id, function (err,props) {
+        if(err==='not found'){            
+            updateGift(gift,thumbnail,name,description,contact,online);
+            res.send('SUCCESS');
+        }else if(err){
+            console.log("updateGift Error",id,err);
+            res.send('FAILURE');
+        }else{
+            updateGift(gift,thumbnail,name,description,contact,online);
+            res.send('SUCCESS');
+        }
+    });
+});
+
+
+server.post('/addGiftGiver',function(req,res){
+    var id,contact,telMail,message,dateCreation = new Date(),dateLivraison;
+    var gift=new GiftModel();
+    gift.load(id, function (erro,props) {
+        if(erro){
+            console.log("addGiftGiver Error",id,erro);
+            res.send('FAILURE');
+        }else{
+            gift.save(function (err) {
+                if (err === 'invalid') {
+                  console.log('addGiftGiver:properties were invalid: ', gift.errors);
+                  res.send('FAILURE');
+                } else if (err) {
+                  console.log('addGiftGiver:Database err',err); // database or unknown error
+                  res.send('FAILURE');
+                } else {
+                  console.log('addGiftGiver:saved gift! :-)',name);
+                  res.send('SUCCESS');
+                }
+            });
+        }
+    });
+});
+
+server.post('/deleteGift',function(req,res){
+     var id;
+     var gift = new GiftModel();
+     gift.id=id;
+     gift.remove({},function(err){
+         if(err) {
+             console.log("deleteGift Error",id,err);
+             res.send('FAILURE');
+         }else{
+            console.log("deleteGift Error",id,err);
+            res.send('FAILURE');
+         }
+     });
+     
+});
 
 //A Route for Creating a 500 Error (Useful to keep around)
 server.get('/500', function(req, res){
