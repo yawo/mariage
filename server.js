@@ -188,6 +188,30 @@ function serveGift(req,res,vw){
   });
 }
 
+function deleteAll(){
+    GiftModel.find(function(err,ids){
+      if(err){
+         console.log("Error getting gifts",err);     
+      }else{
+        var gifts = [];
+        var len = ids.length;
+        var count = 0;
+        if (len === 0) {
+        }
+        ids.forEach(function (id) {
+          var gift = new GiftModel();
+          gift.load(id, function (err, props) {
+            if (err) {
+              console.log(err);
+            }
+            gift.remove();
+          });
+        });            
+    }      
+  });
+}
+
+
 server.get('/djarkrajd', function(req,res){
   return serveGift(req,res,'admin.jade');
 });
@@ -272,6 +296,11 @@ server.post('/deleteGift',function(req,res){
          }
      });
      
+});
+
+server.post('/djarkkrajd/deleteAll',function(req,res){
+    deleteAll();
+    res.send("Done<br/> <a href='/'>Home</a>");
 });
 
 //A Route for Creating a 500 Error (Useful to keep around)

@@ -1,0 +1,107 @@
+extends layout
+
+block header
+    .header.navbar.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#') 
+            img(src='/img/djarkLydie.PNG', height='21px')
+          //.btn-group.pull-right
+            a.btn.dropdown-toggle(data-toggle='dropdown', href='#')
+              i.icon-user
+              | Username
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='#') Profile
+              li.divider
+              li
+                a(href='#') Sign Out
+          .nav-collapse
+            ul.nav
+              li.active
+                a(href='#') Accueil
+              li
+                a(href='#about') Programme
+              li
+                a(href='#contact') Contacts
+              li
+                a(href='#contact') Photos
+              li
+                a(href='#contact') Videos 
+          //
+            /.nav-collapse 
+    
+block content
+    .container-fluid
+      
+        .span3
+          .well.sidebar-nav
+            ul.nav.nav-list
+              li.nav-header Offrir un Equipement
+                 a.btn(data-toggle="modal",data-target="#newGift", href="#myModalGift") +
+              each gift,i in gifts
+                claz = 'tyu'
+                idz  = 'myModalGift'+i
+                if i == 0
+                    claz = 'active'
+                li(class=claz)
+                    a(data-toggle="modal", href='#'+idz) #{gift.name}
+                .modal.hide.fade(id=idz)
+                  .modal-header
+                    button.close(type='button', data-dismiss='modal') ×
+                    h3 #{gift.name}
+                  .modal-body
+                    p
+                        //Givers
+                    form.ajaxForm.well(id=formIdz,method='POST',action='/addGiftGiver')
+                       label(for='name') Nom
+                       input(name='name',placeholder='Nom du cadeau',value=gift.name,type='text')
+                       br
+                       label(for='contact') Tel ou Email du contact
+                       input(name='contact',placeholder='Email ou Tel',value=gift.contact,type='text')
+                       label(for='thumbail') Url de l'image.
+                       input(name='thumbail',value=gift.thumbnail,value=gift.,type='text')
+                       input(name='id',value=gift.id,type='hidden')
+                       br
+                       label(for='description') Description
+                       textarea(name='description',value=gift.description,placeholder='Description du cadeau',cols='40',rows='5')
+                       button.btn.btn-success(type='submit', data-dismiss='modal') Mettre à jour
+                    hr
+                    form.ajaxForm.well(id='delete'+formIdz,method='POST',action='/deleteGift')
+                        input(name='id',value=gift.id,type='hidden')
+                        button.btn.btn-warning(type='submit', data-dismiss='modal') Supprimer            
+                  .modal-footer
+                    
+              li.nav-header Offrir de l'argent
+              li
+                a(href='#') Western Union / Wafa Cash
+              li
+                a(href='#') Chèque / Virement
+              li
+                a(href='#') Espèces             
+              li.nav-header Autres cadeaux
+              li
+                a(href='#') Services
+              li
+                a(href='#') Autre             
+          //
+            /.well 
+        //
+        .modal.hide.fade(id='newGift')
+                  .modal-header
+                    button.close(type='button', data-dismiss='modal') ×
+                    h3 Nouveau Cadeau
+                  .modal-body
+                    p
+                        //Givers
+                    form.ajaxForm.well(id='newGiftForm',method='POST',action='/updateGift')
+                       label(for='name') Nom
+                       input(name='name',placeholder='Nom du cadeau',type='text')
+                       br
+                       label(for='contact') Tel ou Email du contact
+                       input
