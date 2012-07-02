@@ -192,8 +192,7 @@ function deleteAll(){
     GiftModel.find(function(err,ids){
       if(err){
          console.log("Error getting gifts",err);     
-      }else{
-        var gifts = [];
+      }else{        
         var len = ids.length;
         var count = 0;
         if (len === 0) {
@@ -298,7 +297,7 @@ server.post('/deleteGift',function(req,res){
      
 });
 
-server.post('/djarkkrajd/deleteAll',function(req,res){
+server.get('/djarkkrajd/deleteAll',function(req,res){
     deleteAll();
     res.send("Done<br/> <a href='/'>Home</a>");
 });
