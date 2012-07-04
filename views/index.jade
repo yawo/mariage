@@ -38,7 +38,8 @@ block header
     
 block content
     .container-fluid
-        .span1   &nbsp;   
+        .span1   
+          &nbsp;   
         .span3
           .well.sidebar-nav
             ul.nav.nav-list
@@ -59,9 +60,9 @@ block content
                     table
                         tr
                             td
-                                img(src=gift.thumbnail,alt='image cadeau',width=120,height=120)                    
+                                img(src=gift.thumbnail,alt=gift.thumbnail,width=200,height=100)                    
                             td.gift-message
-                                p Cadeau #{gift.description}
+                                p  #{gift.description}
                     form.ajaxForm.well(id=formIdz,method='POST',action='/addGiftGiver')
                        label(for='contact') Contact
                        input(name='contact',placeholder='Votre nom complet',type='text')
@@ -72,20 +73,11 @@ block content
                        br
                        label(for='message') Message
                        textarea(name='message',placeholder='Un petit message où vous précisez comment et quand vous donnerez. Merci',cols='40',rows='5')
+                       br
+                       button.btn.btn-success(type='submit') J'offre
                   .modal-footer
-                    button.btn.btn-success(type='submit', data-dismiss='modal') J'offre
-              li.nav-header Offrir de l'argent
-              li
-                a(href='#') Western Union / Wafa Cash
-              li
-                a(href='#') Chèque / Virement
-              li
-                a(href='#') Espèces             
-              li.nav-header Autres cadeaux
-              li
-                a(href='#') Services
-              li
-                a(href='#') Autre             
+                       
+                
           //
             /.well 
         //

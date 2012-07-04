@@ -1,5 +1,7 @@
 body { margin: 0; font-size: 12px; line-height: 1.4;  padding-top: 60px;
-        padding-bottom: 40px}
+        padding-bottom: 40px;
+        font-family:georgia;
+        }
 .sidebar-nav {
         padding: 9px 0;
       }
@@ -12,5 +14,10 @@ footer{
 */
 
 .gift-message{
+    padding-left:5px;    
     
+}
+
+.claz2{
+    color:red;
 }

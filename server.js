@@ -166,9 +166,18 @@ function serveGift(req,res,vw){
           var gift = new GiftModel();
           gift.load(id, function (err, props) {
             if (err) {
-              return next(err);
+                  console.log("Error getting gifts",err);    
+                  return res.render(vw, {
+                    locals : { 
+                      title : 'Mariage Djark & Lydie'
+                     ,description: 'Mariage Djark & Lydie'
+                     ,author: 'Yawo Guillaume Kpotufe'
+                     ,analyticssiteid: 'UA-32864937-1'             
+                    },gifts:[]
+                });
             }
             //gift.remove();
+            props.id=gift.id
             gifts.push(props);
             if (++count === len) {
              return res.render(vw, {
@@ -203,7 +212,10 @@ function deleteAll(){
             if (err) {
               console.log(err);
             }
-            gift.remove();
+            gift.remove(function(err){
+                console.log("Removing",id,"Err:",err);    
+            });
+            
           });
         });            
     }      
@@ -211,8 +223,13 @@ function deleteAll(){
 }
 
 
-server.get('/djarkrajd', function(req,res){
+server.get('/djarkkrajd', function(req,res){
   return serveGift(req,res,'admin.jade');
+});
+
+
+server.get('/helio', function(req,res){
+  res.send("<center class='ui-widget ui-widget-header ui-corner-all label label-info'><h3>Pardon Helio, FO MANGER SEULEMENT !</h3><center>");
 });
 
 
@@ -239,8 +256,9 @@ function updateGift(gift,thumbnail,name,description,contact,online){
 }
 
 server.post('/updateGift',function(req,res){
-    var id,thumbnail,name,description,contact,online;
+    var id=req.body.id,thumbnail=req.body.thumbnail,name=req.body.name,description=req.body.description,contact=req.body.contact,online=req.body.online;
     var gift=new GiftModel();
+    console.log("Adding gift...",id);
     gift.load(id, function (err,props) {
         if(err==='not found'){            
             updateGift(gift,thumbnail,name,description,contact,online);

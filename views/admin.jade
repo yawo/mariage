@@ -39,56 +39,56 @@ block header
 block content
     .container-fluid
         .span1
+          &nbsp;
         .span3
           .well.sidebar-nav
             ul.nav.nav-list
-              li.nav-header Offrir un Equipement
-                 a.btn(data-toggle="modal",data-target="#newGift", href="#myModalGift") +
+              li.nav-header Offrir un cadeau
+                 a.btn(data-toggle="modal",data-target="#newGift", href="#newGift") Nouveau
               each gift,i in gifts
                 claz = 'tyu'
                 idz  = 'myModalGift'+i
+                formIdz = 'form_'+formIdz
                 if i == 0
                     claz = 'active'
-                li(class=claz)
+                if gift.online
+                    claz2 = ' '
+                else
+                    claz2 = ' offline'
+                li(class=claz+claz2)
                     a(data-toggle="modal", href='#'+idz) #{gift.name}
                 .modal.hide.fade(id=idz)
                   .modal-header
                     button.close(type='button', data-dismiss='modal') ×
                     h3 #{gift.name}
                   .modal-body
-                    p
-                        //Givers
-                    form.ajaxForm.well(id=formIdz,method='POST',action='/addGiftGiver')
+                    p Donneurs
+                        each giver,j in gift.givers.list
+                           p= giver
+                        //
+                    form.ajaxForm.well(id=formIdz,method='POST',action='/updateGift')
                        label(for='name') Nom
                        input(name='name',placeholder='Nom du cadeau',value=gift.name,type='text')
                        br
                        label(for='contact') Tel ou Email du contact
                        input(name='contact',placeholder='Email ou Tel',value=gift.contact,type='text')
-                       label(for='thumbail') Url de l'image.
-                       input(name='thumbail',value=gift.thumbnail,type='text')
+                       label(for='thumbnail') Url de l'image.
+                       input(name='thumbnail',value=gift.thumbnail,type='text')
+                       br
+                       span Dejà offert ?   
+                         input(name='online',type='checkbox')                       
                        input(name='id',value=gift.id,type='hidden')
                        br
                        label(for='description') Description
-                       textarea(name='description',value=gift.description,placeholder='Description du cadeau',cols='40',rows='5')
-                       button.btn.btn-success(type='submit', data-dismiss='modal') Mettre à jour
+                       textarea(name='description',placeholder='Description du cadeau',cols='40',rows='5')= gift.description                         
+                       br
+                       button.btn.btn-success(type='submit') Mettre à jour 
                     hr
                     form.ajaxForm.well(id='delete'+formIdz,method='POST',action='/deleteGift')
                         input(name='id',value=gift.id,type='hidden')
-                        button.btn.btn-warning(type='submit', data-dismiss='modal') Supprimer            
+                        button.btn.btn-warning(type='submit') Supprimer            
                   .modal-footer
-                    
-              li.nav-header Offrir de l'argent
-              li
-                a(href='#') Western Union / Wafa Cash
-              li
-                a(href='#') Chèque / Virement
-              li
-                a(href='#') Espèces             
-              li.nav-header Autres cadeaux
-              li
-                a(href='#') Services
-              li
-                a(href='#') Autre             
+            
           //
             /.well 
         //
@@ -98,22 +98,26 @@ block content
                     h3 Nouveau Cadeau
                   .modal-body
                     p
-                        //Givers
+                        //new Gift
                     form.ajaxForm.well(id='newGiftForm',method='POST',action='/updateGift')
                        label(for='name') Nom
                        input(name='name',placeholder='Nom du cadeau',type='text')
                        br
                        label(for='contact') Tel ou Email du contact
                        input(name='contact',placeholder='Email ou Tel',type='text')
-                       label(for='thumbail') Url de l'image.
-                       input(name='thumbail',value=gift.thumbnail,type='text')
+                       br
+                       span Dejà offert ?   
+                         input(name='online',type='checkbox')
+                       label(for='thumbnail') Url de l'image.
+                       input(name='thumbnail',type='text')
                        input(name='id',value=7777,type='hidden')
                        br
                        label(for='description') Description
                        textarea(name='description',placeholder='Description du cadeau',cols='40',rows='5')
-                       button.btn.btn-success(type='submit', data-dismiss='modal') Créer                    
+                       br
+                       button.btn.btn-success(type='submit') Créer                    
                   .modal-footer
-          /span
+          
         .span9
           #myCarousel.carousel.slide
               // Carousel items 
