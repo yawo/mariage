@@ -21,7 +21,7 @@ block header
               li.divider
               li
                 a(href='#') Sign Out
-          .nav-collapse
+          //ah ok.nav-collapse
             ul.nav
               li.active
                 a(href='#') Accueil
@@ -43,7 +43,7 @@ block content
         .span3
           .well.sidebar-nav
             ul.nav.nav-list
-              li.nav-header Offrir un Equipement
+              li.nav-header Offrir un cadeau ?
               each gift,i in gifts
                 claz = 'tyu'
                 idz  = 'myModalGift'+i
@@ -111,30 +111,30 @@ block content
 
           .row-fluid
             .span4
-              h2 Programme 
+              h4.alert.alert-success Programme 
               p
                 | Description Cadeau...
               p
-                a.btn(data-toggle="modal",data-target="#myModalProgram", href="#myModalProgram") Le Programme ! »
+                a.btn.btn-warning(data-toggle="modal",data-target="#myModalProgram", href="#myModalProgram") Le Programme ! »
             //
               /span
             .span4
-              h2 Faire-part
+              h4.alert.alert-success Faire-part
               p
                 | Vous n'avez pas encore d'invitations ?                
                 | Merci de télécharger puis imprimer le faire-part de la cérémonie.
               p
-                a.btn(data-toggle="modal", href="#myModalFairePart") Télécharger »
+                a.btn.btn-warning(data-toggle="modal", href="#myModalFairePart") Télécharger »
             //
               /span
             .span4
-              h2 Album complet
+              h4.alert.alert-success Album complet
               p
                 | Tout l'album complet du mariage !
                 | Découvrez les moments forts en images.
                 | La dot, les temps de stress, les cérémonies...
               p
-                a.btn(data-toggle="modal", href="#myModalAlbum") L'Album »
+                a.btn.btn-warning(data-toggle="modal", href="#myModalAlbum") L'Album »
         .span1
         
       .modals           

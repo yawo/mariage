@@ -86,10 +86,13 @@ var GiftModel = nohm.model('Gift', {
     },
     methods: {
         // gv is [contact,telMail,message,dateCreation,dateLivraison];
-      give: function (gv) {  
-          if(gv)
-            this.p('givers').list.push=gv;        
-          return gv
+      give: function (gv) { 
+        console.log("Giving",gv);
+        if(gv){
+            this.p('givers').list.push(gv);        
+        }
+        console.log("Givers",this.p('givers').list);
+        return gv
       }
     },
     idGenerator: 'increment'    
@@ -256,7 +259,8 @@ function updateGift(gift,thumbnail,name,description,contact,online){
 }
 
 server.post('/updateGift',function(req,res){
-    var id=req.body.id,thumbnail=req.body.thumbnail,name=req.body.name,description=req.body.description,contact=req.body.contact,online=req.body.online;
+    var id=req.body.id,thumbnail=req.body.thumbnail,name=req.body.name,description=req.body.description,
+           contact=req.body.contact,online=(req.body.online=='checked');
     var gift=new GiftModel();
     console.log("Adding gift...",id);
     gift.load(id, function (err,props) {
@@ -275,7 +279,7 @@ server.post('/updateGift',function(req,res){
 
 
 server.post('/addGiftGiver',function(req,res){
-    var id=req.body.id,contact=req.body.contact,telMail=req.body.tel,message=req.body.message,dateCreation = new Date();
+    var id=req.body.id,contact=req.body.contact,telMail=req.body.tel,message=req.body.message,dateCreation = new Date().format("dd/mm/yyyy");
     var gift=new GiftModel();
     gift.load(id, function (erro,props) {
         if(erro){
@@ -291,7 +295,7 @@ server.post('/addGiftGiver',function(req,res){
                   console.log('addGiftGiver:Database err',err); // database or unknown error
                   res.send('FAILURE');
                 } else {
-                  console.log('addGiftGiver:saved gift! :-)');                  
+                  console.log('addGiftGiver:saved gift! :-)',gift);                  
                   res.send('SUCCESS');
                 }
             });
