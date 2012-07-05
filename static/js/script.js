@@ -18,4 +18,7 @@ $(document).ready(function() {
         console.log("Form sent",res,sth);
         $('.modal').modal('hide');
     });
+    $(".closeModal").click(function(){
+        $('.modal').modal('hide');
+    });
 });

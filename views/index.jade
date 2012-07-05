@@ -50,7 +50,11 @@ block content
                 formIdz = 'form_'+formIdz
                 if i == 0
                     claz = 'active'
-                li(class=claz)
+                if gift.online
+                    claz2 = ' online'
+                else
+                    claz2 = ' offline'
+                li(class=claz+claz2)
                     a(data-toggle="modal", href='#'+idz) #{gift.name}
                 .modal.hide.fade(id=idz)
                   .modal-header
@@ -133,36 +137,34 @@ block content
                 a.btn(data-toggle="modal", href="#myModalAlbum") L'Album »
         .span1
         
-      .modals
-            #myModalGift.modal.hide.fade
-              .modal-header
-                button.close(type='button', data-dismiss='modal') ×
-                h3 Modal header
-              .modal-body
-                p One fine body…
-              .modal-footer
-                a.btn(href='#', data-dismiss='modal') Close
-                 
-        
-        
-            #myModalMoney.modal.hide.fade
-              .modal-header
-                button.close(type='button', data-dismiss='modal') ×
-                h3 Modal header
-              .modal-body
-                p One fine body…
-              .modal-footer
-                a.btn(href='#', data-dismiss='modal') Close
-                 
-        
+      .modals           
         
             #myModalProgram.modal.hide
               .modal-header
                 button.close(type='button', data-dismiss='modal') ×
-                h3 Modal header
+                h3 Le programme
               .modal-body
-                p Programme
+                h4.alert.alert-success Mariage civil
+                ul
+                    li    Date : 06/07/2012
+                    li    Lieu : Rabat
+                
+                h4.alert.alert-success Bénédiction nuptiale
+                ul
+                    li  	Date : 07/07/2012
+                    li  	Heure : 15h-16h30
+                    li  	Lieu : Salle de fête à Fès
+                    li  	Invités : 300 (estimation)
+                
+                h4.alert.alert-success Soirée de célébrations
+                ul
+                    li  	Date : 07/07/2012
+                    li  	Heure : 18h-23h00
+                    li  	Lieu : Salle de fête à Fès
+
+
               .modal-footer
+                Contacter Djark pour toute information.
                 a.btn(href='#', data-dismiss='modal') Close
                  
         
@@ -170,20 +172,21 @@ block content
             #myModalFairePart.modal.hide.fade
               .modal-header
                 button.close(type='button', data-dismiss='modal') ×
-                h3 Modal header
+                h3 Faire part
               .modal-body
-                p Faire part
+                img(src='images/fairepart.jpeg')
               .modal-footer
-                a.btn(href='#', data-dismiss='modal') Close
+                form.ajaxForm(method='GET',action='/fairepart')                  
+                  a.btn.btn-success(href='http://node-boilerplate.mcguy.c9.io/images/fairepart.jpeg',target="_blank") Telecharger
                  
         
         
             #myModalAlbum.modal.hide.fade
               .modal-header
                 button.close(type='button', data-dismiss='modal') ×
-                h3 Modal header
+                h3 Découvrez les images du mariage
               .modal-body
-                p Album
+                p Album complet bientôt (après le mariage)
               .modal-footer
                 a.btn(href='#', data-dismiss='modal') Close
                  

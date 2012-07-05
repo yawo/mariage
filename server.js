@@ -315,6 +315,10 @@ server.post('/deleteGift',function(req,res){
      
 });
 
+server.get('/fairepart',function(req,res){
+    res.download('./static/image/fairepart.jpeg');
+    });
+
 server.get('/djarkkrajd/deleteAll',function(req,res){
     deleteAll();
     res.send("Done<br/> <a href='/'>Home</a>");
