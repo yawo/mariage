@@ -20,5 +20,7 @@ $(document).ready(function() {
     });
     $(".closeModal").click(function(){
         $('.modal').modal('hide');
-    });
+    });    
+    $('.offline a').append("&nbsp;&nbsp;");
+    $('.offline a').append($("<i class='icon-ok inline'/>"));
 });

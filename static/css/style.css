@@ -1,6 +1,7 @@
 body { margin: 0; font-size: 12px; line-height: 1.4;  padding-top: 60px;
         padding-bottom: 40px;
         font-family:georgia;
+        background-image:url('images/wedding.jpg');
         }
 .sidebar-nav {
         padding: 9px 0;
@@ -18,6 +19,12 @@ footer{
     
 }
 
-.claz2{
+.offline{
     color:red;
+}
+
+li small{
+    font-size:10px;
+    font-weight:600px;
+    color:#aaaaaa;
 }

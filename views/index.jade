@@ -43,7 +43,9 @@ block content
         .span3
           .well.sidebar-nav
             ul.nav.nav-list
-              li.nav-header Offrir un cadeau ?
+              li.nav-header 
+                i.icon-gift
+                | &nbsp;&nbsp;Offrir un cadeau ?
               each gift,i in gifts
                 claz = 'tyu'
                 idz  = 'myModalGift'+i
@@ -90,7 +92,7 @@ block content
           #myCarousel.carousel.slide
               // Carousel items 
               .carousel-inner
-                items = [['100_3729.png','100_3729','Mariage Djark et Lydie'],['100_3731.png','100_3731','Mariage Djark et Lydie'],['100_3746.png','Mariage Djark et Lydie','text3']]
+                items = [['100_3729.png','Fiançailles','Fiançailles Djark et Lydie'],['100_3731.png','Fiançailles','Fiançailles Djark et Lydie'] ,['100_3746.png','Fiançailles','Fiançailles Djark et Lydie']]
                 each item,i in items
                     if i==0
                       .item.active

@@ -278,15 +278,19 @@ server.post('/updateGift',function(req,res){
 });
 
 
-server.post('/addGiftGiver',function(req,res){
-    var id=req.body.id,contact=req.body.contact,telMail=req.body.tel,message=req.body.message,dateCreation = new Date().format("dd/mm/yyyy");
+server.post('/addGiftGiver',function(req,res){ 
+    var now = new Date();
+    var id=req.body.id,contact=req.body.contact,telMail=req.body.tel,message=req.body.message,dateCreation = now.toLocaleDateString();
     var gift=new GiftModel();
     gift.load(id, function (erro,props) {
         if(erro){
             console.log("addGiftGiver Error",id,erro);
             res.send('FAILURE');
         }else{
-            gift.give([contact,telMail,message,dateCreation]);
+            var gvs = gift.p('givers');
+            var data = [contact,telMail,message,dateCreation];
+            gvs.list.push(data);
+            gift.p('givers',gvs)            
             gift.save(function (err) {
                 if (err === 'invalid') {
                   console.log('addGiftGiver:properties were invalid: ', gift.errors);

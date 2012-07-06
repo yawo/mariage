@@ -62,9 +62,13 @@ block content
                     button.close(type='button', data-dismiss='modal') ×
                     h3 #{gift.name}
                   .modal-body
-                    p Donneurs
-                        each giver,j in gift.givers.list
-                           p= giver
+                    p 
+                     b Donneurs
+                     each giver,j in gift.givers.list
+                       li 
+                         b #{giver[0]} (#{giver[1]}) 
+                         small (on #{giver[3]})
+                         | : #{giver[2]} 
                         //
                     form.ajaxForm.well(id=formIdz,method='POST',action='/updateGift')
                        label(for='name') Nom
