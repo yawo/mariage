@@ -23,4 +23,5 @@ $(document).ready(function() {
     });    
     $('.offline a').append("&nbsp;&nbsp;");
     $('.offline a').append($("<i class='icon-ok inline'/>"));
+   
 });

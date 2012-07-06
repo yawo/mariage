@@ -8,14 +8,15 @@ body { margin: 0; font-size: 12px; line-height: 1.4;  padding-top: 60px;
       }
   
 footer{
-    font-size:11px;
+    font-size:10px;
     margin-left:20px;
 }
 /*
 */
 
 .gift-message{
-    padding-left:5px;    
+    padding-left:5px;
+    margin-bottom:2px;
     
 }
 
@@ -28,3 +29,4 @@ li small{
     font-weight:600px;
     color:#aaaaaa;
 }
+

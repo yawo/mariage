@@ -9,7 +9,9 @@ block header
             span.icon-bar
             span.icon-bar
           a.brand(href='#') 
-            img(src='/img/djarkLydie.PNG', height='21px')
+          center
+             img(src='/img/djarkLydie3.png',height="50")
+             img(src='/img/homme.png')
           //.btn-group.pull-right
             a.btn.dropdown-toggle(data-toggle='dropdown', href='#')
               i.icon-user
@@ -66,9 +68,9 @@ block content
                     table
                         tr
                             td
-                                img(src=gift.thumbnail,alt=gift.thumbnail,width=200,height=100)                    
+                                img.ui-corner-all(src=gift.thumbnail,alt=gift.thumbnail,width=200,height=100)                    
                             td.gift-message
-                                p  #{gift.description}
+                                p.alert.alert-success  #{gift.description}
                     form.ajaxForm.well(id=formIdz,method='POST',action='/addGiftGiver')
                        label(for='contact') Contact
                        input(name='contact',placeholder='Votre nom complet',type='text')

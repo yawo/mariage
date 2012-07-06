@@ -1,2 +1,10 @@
-yooof
+.modal .viewport { width: 500px; height: 200px; overflow: hidden; position: relative; }
+.modal .overview { list-style: none; position: absolute; left: 0; top: 0; }
+.modal .thumb .end,
+.modal .thumb { background-color: #003D5D; }
+.modal .scrollbar { position: relative; float: right; width: 15px; }
+.modal .track { background-color: #D8EEFD; height: 100%; width:13px; position: relative; padding: 0 1px; }
+.modal .thumb { height: 20px; width: 13px; cursor: pointer; overflow: hidden; position: absolute; top: 0; }
+.modal .thumb .end { overflow: hidden; height: 5px; width: 13px; }
+.modal .disable{ display: none; }yooof
 cadeau test
