@@ -30,3 +30,8 @@ li small{
     color:#aaaaaa;
 }
 
+.modal-body{
+    max-height:700px;
+    overflow:none;
+}
+

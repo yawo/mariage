@@ -9,7 +9,7 @@ block header
             span.icon-bar
             span.icon-bar
           a.brand(href='#') 
-            img(src='/img/djarkLydie.PNG', height='21px')
+            img(src='/img/djarkLydie3.png', height='50px')
           //.btn-group.pull-right
             a.btn.dropdown-toggle(data-toggle='dropdown', href='#')
               i.icon-user
@@ -21,7 +21,7 @@ block header
               li.divider
               li
                 a(href='#') Sign Out
-          .nav-collapse
+          //.nav-collapse
             ul.nav
               li.active
                 a(href='#') Accueil
@@ -45,6 +45,7 @@ block content
             ul.nav.nav-list
               li.nav-header Offrir un cadeau
                  a.btn(data-toggle="modal",data-target="#newGift", href="#newGift") Nouveau
+              li.divider
               each gift,i in gifts
                 claz = 'tyu'
                 idz  = 'myModalGift'+i
@@ -87,11 +88,10 @@ block content
                        textarea(name='description',placeholder='Description du cadeau',cols='40',rows='5')= gift.description                         
                        br
                        button.btn.btn-success(type='submit') Mettre à jour 
-                    hr
-                    form.ajaxForm.well(id='delete'+formIdz,method='POST',action='/deleteGift')
-                        input(name='id',value=gift.id,type='hidden')
-                        button.btn.btn-warning(type='submit') Supprimer            
                   .modal-footer
+                    form.ajaxForm(id='delete'+formIdz,method='POST',action='/deleteGift')                        
+                       button.btn.btn-warning(type='submit') Supprimer 
+                       a.btn(href='#', data-dismiss='modal') Close
             
           //
             /.well 

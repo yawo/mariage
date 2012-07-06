@@ -3,7 +3,7 @@
 
 $(document).ready(function() {   
 
-    var socket = io.connect();
+   /* var socket = io.connect();
     
     $('#sender').bind('click', function() {
         socket.emit('message', 'Message Sent on ' + new Date());     
@@ -11,11 +11,11 @@ $(document).ready(function() {
     
     socket.on('server_message', function(data){
         $('#reciever').append('<li>' + data + '</li>');  
-    });
-    console.log("loaded");
+    });*/
+    //console.log("loaded");
     $('.carousel').carousel({  interval: 2000});
     $('.ajaxForm').ajaxForm(function(res,sth) { 
-        console.log("Form sent",res,sth);
+        //console.log("Form sent",res,sth);
         $('.modal').modal('hide');
     });
     $(".closeModal").click(function(){
@@ -23,5 +23,9 @@ $(document).ready(function() {
     });    
     $('.offline a').append("&nbsp;&nbsp;");
     $('.offline a').append($("<i class='icon-ok inline'/>"));
+    $('.nav-list li').click(function(){
+        $('.nav-list li.active').removeClass('active');
+        $(this).addClass('active');
+    });
    
 });

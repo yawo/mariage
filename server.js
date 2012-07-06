@@ -2,7 +2,7 @@
 //setup Dependencies
 var connect = require('connect')
     , express = require('express')
-    , io = require('socket.io')
+  //  , io = require('socket.io')
     ,redis = require('redis')
     , port = (process.env.PORT || 8081)
     ,nohm = require('nohm').Nohm;
@@ -120,7 +120,7 @@ server.error(function(err, req, res, next){
 server.listen( port);
 
 //Setup Socket.IO
-var io = io.listen(server);
+/*var io = io.listen(server);
 io.sockets.on('connection', function(socket){
   console.log('Client Connected');
   socket.on('message', function(data){
@@ -131,7 +131,7 @@ io.sockets.on('connection', function(socket){
     console.log('Client Disconnected.');
   });
 });
-
+*/
 
 ///////////////////////////////////////////
 //              Routes                   //
