@@ -5,9 +5,33 @@ var connect = require('connect')
   //  , io = require('socket.io')
     ,redis = require('redis')
     , port = (process.env.PORT || 8081)
-    ,nohm = require('nohm').Nohm;
+    ,nohm = require('nohm').Nohm
+    ,path           = require('path')
+    ,templatesDir   = path.resolve(__dirname, '.', 'mail_templates')
+    ,emailTemplates = require('email-templates')
+    ,nodemailer = require("nodemailer");
 
-//Setup Express
+//////////////////Setup Emails
+// create reusable transport method (opens pool of SMTP connections)
+var smtpTransport = nodemailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth: {
+        user: "love.thewell@gmail.com",
+        pass: "mohafada"
+    }
+});
+// setup e-mail data with unicode symbols
+var mailOptions = {
+    from: "Love TheWell <love.thewell@gmail.com>", // sender address
+    to: "mcguy2008@gmail.com, kudelik@gmail.com", // list of receivers
+    subject: "Test TheWell", // Subject line
+    text: "Test Body no HTML", // plaintext body
+    html: "Test Body  <b>with HTML</b>" // html body
+}
+
+
+
+////////////////////Setup Express
 var server = express.createServer();
 server.configure(function(){
     server.set('views', __dirname + '/views');
@@ -325,7 +349,27 @@ server.post('/deleteGift',function(req,res){
 
 server.get('/fairepart',function(req,res){
     res.download('./static/image/fairepart.jpeg');
+});
+
+server.get('/mail',function(req,res){
+    // send mail with defined transport object
+    smtpTransport.sendMail(mailOptions, function(error, response){
+        if(error){
+            console.log(error);
+            res.send("Error:"+error);
+        }else{
+            var mess = "Message sent: " + response.message;
+            console.log(mess);
+            res.send(mess);
+        }
+
+    // if you don't want to use this transport object anymore, uncomment following line
+    //smtpTransport.close(); // shut down the connection pool, no more messages
     });
+
+});
+
+
 
 server.get('/djarkkrajd/deleteAll',function(req,res){
     deleteAll();

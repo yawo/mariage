@@ -10,7 +10,10 @@
     "mongoose": "2.4.8",
     "socket.io": "0.8.7",
     "redis": ">=0.0.1",
-    "nohm": ">=0.0.1"
+    "nohm": ">=0.0.1",
+    "email-templates": ">=0.0.1",
+    "nodemailer": ">=0.0.1"
+    
   },
   "devDependencies": {
     "vows": "0.5.x",
